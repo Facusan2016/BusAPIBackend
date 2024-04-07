@@ -1,19 +1,20 @@
 # Use an official PostgreSQL image as the base image
 FROM postgres:latest
 
-RUN iconv -f utf-16le -t utf-8 < dbInit.sh > dbInit_unix.sh
-
 RUN apt-get update && \
     apt-get install -y nodejs && \
-    apt-get install -y unzip
+    apt-get install -y unzip && \
+    apt-get install dos2unix
+
+COPY ./db-init-scripts/dbInit.sh /docker-entrypoint-initdb.d/dbInit.sh
+
+RUN dos2unix /docker-entrypoint-initdb.d/dbInit.sh
 
 # Set environment variables
 ENV DB_HOST=127.0.0.1
 ENV DB_PORT=5432
 ENV DB_NAME=bus_app
 ENV DB_USER=bus_app_user
-
-# Copy initialization script into the container
 
 # Expose the PostgreSQL port
 EXPOSE 5432
