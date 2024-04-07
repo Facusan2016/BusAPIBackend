@@ -1,0 +1,66 @@
+CREATE TABLE agency (
+    agency_id VARCHAR(10),
+    agency_name VARCHAR(100),
+    agency_url VARCHAR(255),
+    agency_timezone VARCHAR(50),
+    agency_phone VARCHAR(20),
+    agency_lang VARCHAR(10)
+);
+
+CREATE TABLE calendar (
+    service_id INTEGER PRIMARY KEY,
+    monday BOOLEAN,
+    tuesday BOOLEAN,
+    wednesday BOOLEAN,
+    thursday BOOLEAN,
+    friday BOOLEAN,
+    saturday BOOLEAN,
+    sunday BOOLEAN,
+    start_date DATE,
+    end_date DATE
+);
+
+CREATE TABLE route (
+    route_id INTEGER,
+    agency_id VARCHAR(10),
+    route_short_name VARCHAR(100),
+    route_long_name VARCHAR(255),
+    route_desc TEXT,
+    route_type INTEGER
+);
+
+CREATE TABLE shape (
+    shape_id INTEGER,
+    shape_pt_lat NUMERIC,
+    shape_pt_lon NUMERIC,
+    shape_pt_sequence INTEGER
+);
+
+CREATE TABLE stop_time (
+    trip_id VARCHAR(50),
+    arrival_time TIME,
+    departure_time TIME,
+    stop_id INTEGER,
+    stop_sequence INTEGER,
+    timepoint INTEGER
+);
+
+CREATE TABLE stop (
+    stop_id INTEGER,
+    stop_name VARCHAR(255),
+    stop_code INTEGER,
+    stop_lat NUMERIC,
+    stop_lon NUMERIC,
+    location_type INTEGER,
+    stop_url VARCHAR(255)
+);
+
+CREATE TABLE trip (
+    route_id INTEGER,
+    service_id INTEGER,
+    trip_id VARCHAR(50),
+    trip_headsign VARCHAR(255),
+    direction_id INTEGER,
+    block_id VARCHAR(20),
+    shape_id INTEGER
+);
