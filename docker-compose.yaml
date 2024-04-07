@@ -6,7 +6,6 @@ services:
       - "5432:5432"
     volumes:
       - ./database/db-data:/db-data
-      - ./database/db-init-scripts:/docker-entrypoint-initdb.d
     environment:
       - POSTGRES_DB=bus_app
       - POSTGRES_USER=bus_app_user

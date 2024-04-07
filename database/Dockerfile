@@ -4,10 +4,10 @@ FROM postgres:latest
 RUN apt-get update && \
     apt-get install -y nodejs && \
     apt-get install -y unzip && \
-    apt-get install dos2unix
-
-COPY ./db-init-scripts/dbInit.sh /docker-entrypoint-initdb.d/dbInit.sh
-
+    apt-get install dos2unix 
+    
+COPY ./db-init-scripts/ /docker-entrypoint-initdb.d/
+    
 RUN dos2unix /docker-entrypoint-initdb.d/dbInit.sh
 
 # Set environment variables
