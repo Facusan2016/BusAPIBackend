@@ -11,6 +11,9 @@ import {
 } from './config.js'
 
 const { Client } = pg
+pg.types.setTypeParser(1700, (val) => {
+  return parseFloat(val)
+})
 
 //Postgres database connection.
 

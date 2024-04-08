@@ -25,3 +25,12 @@ export const getShapeIdByRouteId = async(route_id) => {
     return null
   }
 }
+
+// Function to read CSV file and extract latitudes and longitudes
+export const getLatLonArray = (shapesArr) => {
+  const latLonArray = shapesArr.map((row) => ({
+    lat: row.shape_pt_lat, lng: row.shape_pt_lon
+  }));
+
+  return latLonArray;
+}

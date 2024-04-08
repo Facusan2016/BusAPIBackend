@@ -1,5 +1,5 @@
 import client from '../database.js'
-import { getShapeIdByRouteId } from './helpers.js'
+import { getLatLonArray, getShapeIdByRouteId } from './helpers.js'
 
 // Gets all the bus routes and returns a json with the following structure
 // {
@@ -77,19 +77,20 @@ export const getShapeByRouteId = async(req, res) => {
 
   const queryConf = {
     name: 'getShapeByRouteId',
-    text: `SELECT * FROM shape WHERE shape_id=$1`,
+    text: `SELECT * FROM shape WHERE shape_id=$1 ORDER BY shape_pt_sequence ASC`,
     values: [shape_id]
   }
 
   try {
 
     let result = await client.query(queryConf)
+    console.log(result)
 
     res.status(200).json(
       {
         ok: true,
         quantity: result.rowCount,
-        data: result.rows
+        shape: getLatLonArray(result.rows)
       }
     )
     
