@@ -7,8 +7,9 @@ DB_USER="bus_app_user"
 WORKDIR="/db-data"
 ACCESS_TOKEN_URL='https://mvdapi-auth.montevideo.gub.uy/auth/realms/pci/protocol/openid-connect/token'
 GTFS_URL='https://api.montevideo.gub.uy/api/transportepublico/buses/gtfs/static/latest/google_transit.zip'
-CLIENT_ID='c2bf6e48'
-CLIENT_SECRET='c223f2e88eb40b19664f2b8ecbbb717d'
+CLIENT_ID=${CLIENT_ID}
+CLIENT_SECRET=${CLIENT_SECRET}
+
 
 #Initializing the tables.
 
@@ -48,6 +49,7 @@ echo "Fixing extra column on trips.csv"
 node /docker-entrypoint-initdb.d/deleteLastColumn.js trips.csv
 
 #Copying the data from the .CSV files.
+
 echo "Copying agency.csv"
 psql -U "$DB_USER" -d "$DB_NAME" -c "\COPY agency(agency_id, agency_name, agency_url, agency_timezone, agency_phone, agency_lang) FROM '$WORKDIR/agency.csv' DELIMITER ',' CSV HEADER;"
 

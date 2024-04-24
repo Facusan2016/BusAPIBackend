@@ -11,10 +11,8 @@ COPY ./db-init-scripts/ /docker-entrypoint-initdb.d/
 RUN dos2unix /docker-entrypoint-initdb.d/dbInit.sh
 
 # Set environment variables
-ENV DB_HOST=127.0.0.1
-ENV DB_PORT=5432
-ENV DB_NAME=bus_app
-ENV DB_USER=bus_app_user
+ENV CLIENT_ID=${CLIENT_ID}
+ENV CLIENT_SECRET=${CLIENT_SECRET}
 
 # Expose the PostgreSQL port
 EXPOSE 5432

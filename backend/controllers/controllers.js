@@ -31,7 +31,6 @@ export const getBusRoutes = async(req, res) => {
   try {
 
     let result = await client.query(queryConf)
-    console.log(result)
 
     res.status(200).json(
       {
@@ -84,7 +83,6 @@ export const getShapeByRouteId = async(req, res) => {
   try {
 
     let result = await client.query(queryConf)
-    console.log(result)
 
     res.status(200).json(
       {
