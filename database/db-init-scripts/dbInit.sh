@@ -31,6 +31,8 @@ echo "Renaming from .txt to .csv"
 
 cd /db-data
 
+#Converting the .txt to .csv files
+
 for file in *.txt; do
     mv -- "$file" "${file%.txt}.csv"
 done

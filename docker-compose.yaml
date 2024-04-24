@@ -1,7 +1,18 @@
 version: '3.8'
 services:
+  backend:
+    build: ./backend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - database
+    volumes:
+      - ./backend/:/app/backend
+    networks:
+      - app_network
+    
   database:
-    build: ./database/
+    build: ./database
     ports:
       - "5432:5432"
     volumes:
@@ -10,3 +21,9 @@ services:
       - POSTGRES_DB=bus_app
       - POSTGRES_USER=bus_app_user
       - POSTGRES_PASSWORD=bus_app_pass
+    networks:
+      - app_network
+
+networks:
+  app_network:
+    driver: bridge
