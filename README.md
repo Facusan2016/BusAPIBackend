@@ -57,7 +57,7 @@ The database is then connected to a Node.js API, which offers two distinct endpo
   ]
 }
 ```
-### Installation and Execution
+## Installation and Execution
 To run this project, Docker must be installed on your local machine. Once installed, execute the following command in the root folder:
 
 ```sh
